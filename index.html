@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Геоотзыв</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+  
+
+  </head>
+  <body>
+  <div id="map"></div>
+
+    <script id="form-review" type="text/x-handlebars-template">
+        <div class="map top">
+            <div class="map__head"><i class="fas fa-map-marker-alt"></i>$[contentLayout]<i data-action="close" class="close map__close fa fa-times"></i></div>
+            <div class="map__content">
+                <div class="map__reviews">$[contentReviews]</div>
+                <div class="map__feedback map-feedback">
+                    <div class="map-feedback__head">ВАШ ОТЗЫВ</div>
+                    <div class="map-feedback__form">
+                    <div class="form-field map-feedback__form-field">
+                        <input class="form-field__edit map-feedback-name" name="map-feedback-name" type="text" placeholder="Ваше имя:"/>
+                    </div>
+                    <div class="form-field map-feedback__form-field">
+                        <input class="form-field__edit map-feedback-place" name="map-feedback-place" type="text" placeholder="Укажите место:"/>
+                    </div>
+                    <div class="form-field map-feedback__form-field">
+                        <textarea class="form-field__edit map-feedback-message" name="map-feedback-message" type="text" placeholder="Поделитесь впечатлениями:"></textarea>
+                    </div>
+                    </div>
+                </div>
+                <div class="map__buttons"><a class="button map__add" data-action="add">Добавить</a></div>
+            </div> 
+        </div>
+    </script>
+
+    <script id="balloon-review" type="text/x-handlebars-template">
+        <div class="balloon">
+            <h2 class=balloon__header>$[properties.balloonContentHeader|raw]</h2>
+            <a class=balloon__link data-action="open-link" data-id-mark="$[properties.id|raw]">$[properties.balloonContentLink|raw]</a>
+            <div class=balloon__body>$[properties.balloonContentBody|raw]</div>
+            <div class=balloon__footer>$[properties.balloonContentFooter|raw]</div>
+        </div>
+    </script>
+
+    <script id="reviews" type="text/x-handlebars-template">
+        {{#each reviews}}
+        <div class="map__review-item map-review">
+            <div class="map-review__top">
+                <div class="map-review__name">{{name}}</div>
+                <div class="map-review__place">{{place}}</div>
+                <div class="map-review__date">{{date}}</div>
+            </div>
+            <div class="map-review__text">{{message}}</div>
+        </div>
+        {{/each}}
+    </script>
+  
+  </body>
+</html>
